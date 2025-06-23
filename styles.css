@@ -1,0 +1,312 @@
+/* Styles for ChatGPT Transfer Extension */
+
+/* Transfer Button Styles */
+.transfer-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.transfer-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.transfer-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.transfer-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Transfer Notification Styles */
+.transfer-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 10000;
+  background: rgba(239, 68, 68, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  padding: 0;
+  max-width: 350px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 0.3s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.notification-content {
+  padding: 20px;
+  color: white;
+}
+
+.notification-content strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.notification-content p {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.notification-content button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  padding: 8px 16px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.notification-content button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.notification-content button:first-of-type {
+  background: rgba(255, 255, 255, 0.9);
+  color: #dc2626;
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.notification-content button:first-of-type:hover {
+  background: white;
+}
+
+/* Floating Action Button for Mobile */
+@media (max-width: 768px) {
+  .transfer-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    top: auto;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+    font-size: 0;
+  }
+  
+  .transfer-button svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .transfer-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    top: 20px;
+  }
+}
+
+/* Keyframe animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Pulse animation for urgent notifications */
+.transfer-button.urgent {
+  animation: pulse 2s infinite;
+}
+
+/* Integration with ChatGPT's existing styles */
+.transfer-button {
+  /* Ensure button doesn't interfere with ChatGPT's layout */
+  position: fixed !important;
+  z-index: 10000 !important;
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .transfer-notification {
+    background: rgba(17, 17, 17, 0.95);
+    border-color: rgba(55, 65, 81, 0.5);
+  }
+  
+  .notification-content {
+    color: #f9fafb;
+  }
+  
+  .notification-content button:first-of-type {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    border-color: rgba(239, 68, 68, 0.9);
+  }
+  
+  .notification-content button:first-of-type:hover {
+    background: #dc2626;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .transfer-button {
+    background: #000;
+    border: 2px solid #fff;
+  }
+  
+  .transfer-button:hover {
+    background: #333;
+  }
+  
+  .transfer-notification {
+    background: #000;
+    border: 2px solid #fff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .transfer-button {
+    transition: none;
+  }
+  
+  .transfer-button:hover {
+    transform: none;
+  }
+  
+  .transfer-notification {
+    animation: none;
+  }
+  
+  .transfer-button.urgent {
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.transfer-button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.notification-content button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 1px;
+}
+
+/* Tooltip styles */
+.transfer-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -35px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10001;
+}
+
+.transfer-button:hover::after {
+  opacity: 1;
+}
+
+/* Loading states */
+.transfer-button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.transfer-button.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Success states */
+.transfer-button.success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.transfer-button.success:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Compact mode for smaller screens */
+@media (max-height: 600px) {
+  .transfer-notification {
+    top: 10px;
+  }
+  
+  .notification-content {
+    padding: 15px;
+  }
+  
+  .notification-content strong {
+    font-size: 14px;
+  }
+  
+  .notification-content p {
+    font-size: 12px;
+  }
+}
